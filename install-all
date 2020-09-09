@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+sudo ./install-sudo depends
+#./build-alacritty
+./build-v4l2-request
+sudo ./install-sudo

@@ -1,0 +1,45 @@
+#!/bin/sh
+
+### Package: pbp-install-libva-v4l2-request
+### Version: v20200630.2300
+### Author: Michael Gan "xmixahlx" michaelbgan@gmail.com
+### License: GPLv3
+### Script Dependencies: linux, ffmpeg, libva
+
+## PBPTOOLSDIR
+if [ -z $PBPTOOLSDIR ]; then
+ PBPTOOLSDIR="`pwd`"
+fi
+
+## VARS
+DATE=`date +%Y%m%d%H%M%S`
+RESDIR=$PBPTOOLSDIR/resources
+DEVDIR=$PBPTOOLSDIR/upstream
+GITREPO=https://github.com/pH5
+GITTREE=libva-v4l2-request
+GITBRANCH=hantro-h264
+PKGDIR=$GITTREE\_$GITBRANCH
+
+## PREP
+set -e
+mkdir -p $DEVDIR
+cd $DEVDIR
+
+## GIT
+rm -rf $PKGDIR
+git clone --depth=1 $GITREPO/$GITTREE.git --branch=$GITBRANCH $PKGDIR
+cd $PKGDIR
+git clean -f
+git reset --hard
+git pull
+
+## CONFIGURE
+env prefix=/opt/ ./autogen.sh 
+
+## BUILD
+make -j$(nproc)
+
+## EXIT
+exit
+
+## ENJOY

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PKGROOT=$(pwd)
+
+cd $PKGROOT
+
+# libva
+cd upstream
+cd libva\_hantro-h264
+ninja -C pbp-build install
+
+cd $PKGROOT
+# v4l2_request
+install -c upstream/libva-v4l2-request_hantro-h264/src/.libs/v4l2_request_drv_video.la /opt/lib/arm-linux-gnueabihf/dri/v4l2_request_drv_video.la
+install -c upstream/libva-v4l2-request_hantro-h264/src/.libs/v4l2_request_drv_video.so /opt/lib/arm-linux-gnueabihf/dri/v4l2_request_drv_video.so
+
+ldconfig

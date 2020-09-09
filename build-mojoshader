@@ -1,0 +1,33 @@
+#!/bin/sh
+
+PBPTOOLSDIR="`pwd`"
+
+## VARS
+DATE=`date +%Y%m%d%H%M%S`
+RESDIR=$PBPTOOLSDIR/resources
+DEVDIR=$PBPTOOLSDIR/upstream
+URL=https://codeload.github.com/FNA-XNA/MojoShader/zip/41f5a40ad0e22ee1733105e2a757b10b105b299e
+ZIP=mojoshader.zip
+DIR=MojoShader-41f5a40ad0e22ee1733105e2a757b10b105b299e
+
+## PREP
+set -e
+mkdir -p $DEVDIR
+cd $DEVDIR
+
+## BUILD
+rm -rf $ZIP $DIR
+wget $URL -O $ZIP
+unzip $ZIP
+cd $DIR
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_SHARED=ON \
+	-DDEPTH_CLIPPING=ON -DFLIP_VIEWPORT=ON ..
+make -j5
+
+## EXIT
+exit
+
+## ENJOY
+

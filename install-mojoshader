@@ -1,0 +1,18 @@
+#!/bin/sh
+
+PBPTOOLSDIR="`pwd`"
+
+## VARS
+DATE=`date +%Y%m%d%H%M%S`
+RESDIR=$PBPTOOLSDIR/resources
+DEVDIR=$PBPTOOLSDIR/upstream
+DIR=MojoShader-41f5a40ad0e22ee1733105e2a757b10b105b299e
+
+## PREP
+cd $DEVDIR/$DIR/build
+install -c libmojoshader.so /opt/lib/arm-linux-gnueabihf/libmojoshader.so
+
+ldconfig
+
+## ENJOY
+

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PKGROOT=$(pwd)
+
+set -v
+
+cd upstream
+cd Theorafile\_master
+
+mkdir -p /opt/lib/arm-linux-gnueabihf
+
+cp libtheorafile.so /opt/lib/arm-linux-gnueabihf/
+ldconfig

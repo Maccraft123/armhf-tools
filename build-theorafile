@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PBPTOOLSDIR="`pwd`"
+
+## VARS
+DATE=`date +%Y%m%d%H%M%S`
+RESDIR=$PBPTOOLSDIR/resources
+DEVDIR=$PBPTOOLSDIR/upstream
+GITREPO=https://github.com/FNA-XNA
+GITTREE=Theorafile
+GITBRANCH=master
+
+PKGDIR=$GITTREE\_$GITBRANCH
+
+## PREP
+set -e
+mkdir -p $DEVDIR
+cd $DEVDIR
+
+## BUILD
+rm -rf $PKGDIR
+git clone $GITREPO/$GITTREE.git $PKGDIR
+cd $PKGDIR
+make -j`nproc`
+
+## EXIT
+exit
+
+## ENJOY
+
