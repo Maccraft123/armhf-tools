@@ -37,15 +37,15 @@ git pull
 rm -Rf pbp-build
 
 ## CONFIGURE
-meson pbp-build --prefix=~/opt --buildtype=release \
+meson pbp-build --prefix=/opt --buildtype=release \
 -Dplatforms=wayland,x11 -Ddri-drivers= \
--Dvulkan-drivers= -Dgallium-drivers=panfrost,kmsro,swrast \
+-Dvulkan-drivers= -Dgallium-drivers=panfrost,kmsro \
 -Dlibunwind=false -Dllvm=false
 
 ## BUILD
 ninja -C pbp-build
 
-ninja -C pbp-build install
+sudo ninja -C pbp-build install
 
 ## EXIT
 exit

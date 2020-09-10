@@ -1,6 +1,3 @@
 #!/bin/bash
 
-PKGROOT=$(pwd)
-
 apt-get -y install build-essential coreutils libc-bin wget patch libfontconfig-dev libfreetype-dev libxcb1-dev libgcc-9-dev libc6-dev libexpat1-dev libuuid1 uuid-dev libpng-dev zlib1g-dev libxau-dev libxdmcp-dev libbsd-dev ncurses-bin libncurses-dev fish cargo desktop-file-utils libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev libdrm-dev meson git python3-mako libxcb-shm0-dev
-apt-get -y build-dep mesa

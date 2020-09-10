@@ -15,8 +15,8 @@ fi
 DATE=`date +%Y%m%d%H%M%S`
 RESDIR=$PBPTOOLSDIR/resources
 DEVDIR=$PBPTOOLSDIR/upstream
-GITREPO=https://github.com/intel
-GITTREE=libva-utils
+GITREPO=https://github.com/ptitseb
+GITTREE=SDL2
 GITBRANCH=master
 PKGDIR=$GITTREE\_$GITBRANCH
 
@@ -34,17 +34,15 @@ git reset --hard
 git pull
 
 ## CLEAN
-rm -Rf pbp-build
+rm -Rf build
 
 ## CONFIGURE
-meson pbp-build -Dprefix=/opt -Dbuildtype=release #--libdir=/usr/local/lib/arm-linux-gnueabihf
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 ## BUILD
-ninja -C pbp-build
-
-## INSTALL
-sudo ninja -C pbp-build install
-sudo ldconfig
+make -j5
 
 ## EXIT
 exit

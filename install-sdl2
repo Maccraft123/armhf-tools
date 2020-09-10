@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PBPTOOLSDIR="`pwd`"
+
+cd upstream
+cd MojoShader\_fna
+
+install -c build/libmojoshader.so /opt/lib/arm-linux-gnueabihf/libmojoshader.so
+
+ldconfig
+
+## ENJOY
+

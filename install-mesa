@@ -5,11 +5,12 @@ PKGROOT=$(pwd)
 set -v
 
 cd upstream
-cd mesa\_20.2
+cd mesa\_master
 
 grep LIBGL_DRIVERS_PATH /etc/profile >/dev/null || printf "export LIBGL_DRIVERS_PATH='/opt/lib/arm-linux-gnueabihf/dri/:/usr/lib/arm-linux-gnueabihf/dri'" >> /etc/profile
 
-echo "/opt/lib/arm-linux-gnueabihf" > /etc/ld.conf.d/optlibs.conf
+touch /etc/ld.so.conf.d/optlibs.conf
+echo "/opt/lib/arm-linux-gnueabihf" > /etc/ld.so.conf.d/optlibs.conf
 
 ninja -C pbp-build install
 
