@@ -1,6 +1,6 @@
 default:
 	sudo ./install-deps
-	#./build-mesa
+	./build-mesa
 	#./build-sdl2 FIXME
 	./build-mojoshader
 	./build-theorafile
