@@ -15,10 +15,10 @@ fi
 DATE=`date +%Y%m%d%H%M%S`
 RESDIR=$PBPTOOLSDIR/resources
 DEVDIR=$PBPTOOLSDIR/upstream
-GITREPO=https://gitlab.freedesktop.org/icecream95
+GITREPO=https://gitlab.freedesktop.org/mesa
 GITTREE=mesa
 
-GITBRANCH=spill-fix
+GITBRANCH=master
 PKGDIR=$GITTREE\_$GITBRANCH
 
 ## PREP
@@ -37,7 +37,7 @@ git pull
 rm -Rf pbp-build
 
 ## CONFIGURE
-meson pbp-build --prefix=~/mesa-test --buildtype=release \
+meson pbp-build --prefix=~/opt --buildtype=release \
 -Dplatforms=wayland,x11 -Ddri-drivers= \
 -Dvulkan-drivers= -Dgallium-drivers=panfrost,kmsro,swrast \
 -Dlibunwind=false -Dllvm=false
