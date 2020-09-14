@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PBPTOOLSDIR="`pwd`"
+
+cd upstream
+cd c100pa-daemon\_master
+
+cp daemon daemon\_kevin daemon\_minnie ~/opt/bin/
+
+## ENJOY
+

@@ -3,3 +3,4 @@
 #./install-sdl2
 ./install-mojoshader
 ./install-theorafile
+./install-c100pa-daemon
