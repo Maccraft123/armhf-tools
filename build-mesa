@@ -33,6 +33,10 @@ git clean -f
 git reset --hard HEAD
 git pull
 
+## patch
+ls s3tc.patch 2>/dev/null || wget https://gitlab.freedesktop.org/snippets/1147/raw -O s3tc.patch
+patch -p1 < s3tc.patch
+
 ## CLEAN
 rm -Rf pbp-build
 
@@ -45,7 +49,7 @@ meson pbp-build --prefix=/opt --buildtype=release \
 ## BUILD
 ninja -C pbp-build
 
-sudo ninja -C pbp-build install
+#sudo ninja -C pbp-build install
 
 ## EXIT
 exit

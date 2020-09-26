@@ -14,4 +14,6 @@ echo "/opt/lib/arm-linux-gnueabihf" > /etc/ld.so.conf.d/optlibs.conf
 
 ninja -C pbp-build install
 
+rm -rf pbp-build
+
 ldconfig
