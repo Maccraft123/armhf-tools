@@ -33,7 +33,7 @@ git clean -f
 git reset --hard HEAD
 git pull
 
-## patch
+## s3tc patch is made by Icecream95, NOT ME
 ls s3tc.patch 2>/dev/null || wget https://gitlab.freedesktop.org/snippets/1147/raw -O s3tc.patch
 patch -p1 < s3tc.patch
 
