@@ -14,7 +14,14 @@ fi
 ## VARS
 DATE=`date +%Y%m%d%H%M%S`
 RESDIR=$PBPTOOLSDIR/resources
-DEVDIR=$PBPTOOLSDIR/upstream
+if [ -z "$CROSS" ]; then
+	DEVDIR=$PBPTOOLSDIR/upstream
+else
+	DEVDIR=$PBPTOOLSDIR/upstream-cross
+	[ -f "$PBPTOOLSDIR/$CROSS" ] && export CROSSARGS="--cross-file $PBPTOOLSDIR/$CROSS --libdir=lib/aarch64-linux-gnu" || exit 1
+	export QEMU_LD_PREFIX=/usr/aarch64-linux-gnu
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/aarch64-linux-gnu/lib:/usr/aarch64-linux-gnu/lib64"
+fi
 GITREPO=https://gitlab.freedesktop.org/mesa
 GITTREE=mesa
 
@@ -44,7 +51,7 @@ rm -Rf pbp-build
 meson pbp-build --prefix=/opt --buildtype=release \
 -Dplatforms=wayland,x11 -Ddri-drivers= \
 -Dvulkan-drivers= -Dgallium-drivers=panfrost,kmsro \
--Dlibunwind=false -Dllvm=false
+-Dlibunwind=false -Dllvm=false $CROSSARGS
 
 ## BUILD
 ninja -C pbp-build
