@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PKGROOT=$(pwd)
+
+cd $PKGROOT
+
+# libva
+cd upstream
+cd FFmpeg_v4l2-request-hwaccel-4.3.1-rkvdec
+make install
+
+ldconfig
