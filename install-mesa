@@ -12,6 +12,7 @@ if grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null; then
 	echo "Not reconfiguring driver path"
 else
 	echo "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri'" >> $DESTDIR/etc/profile
+	echo "export LD_LIBRARY_PATH=/opt/lib/$TRIPLET/:\$LD_LIBRARY_PATH" >> $DESTDIR/etc/profile
 	echo "export PAN_MESA_DEBUG=bifrost" >> $DESTDIR/etc/profile
 fi
 
