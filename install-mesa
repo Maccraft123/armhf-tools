@@ -7,10 +7,12 @@ set -v
 cd upstream || cd upstream-cross
 cd mesa\_master
 
-grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null || printf "export LIBGL_DRIVERS_PATH='/opt/lib/aarch64-linux-gnueabihf/dri/:/usr/lib/aarch64-linux-gnueabihf/dri'" >> $DESTDIR/etc/profile
+
+
+grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null || printf "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri'" >> $DESTDIR/etc/profile
 
 touch $DESTDIR/etc/ld.so.conf.d/optlibs.conf
-echo "/opt/lib/arm-linux-gnueabihf" > $DESTDIR/etc/ld.so.conf.d/optlibs.conf
+echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/optlibs.conf
 
 ninja -C pbp-build install
 
