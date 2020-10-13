@@ -8,11 +8,15 @@ cd upstream || cd upstream-cross
 cd mesa\_master
 
 
+if grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null; then
+	echo "Not reconfiguring driver path"
+else
+	echo "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri'" >> $DESTDIR/etc/profile
+	echo "export PAN_MESA_DEBUG=bifrost" >> $DESTDIR/etc/profile
+fi
 
-grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null || printf "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri'" >> $DESTDIR/etc/profile
-
-touch $DESTDIR/etc/ld.so.conf.d/optlibs.conf
-echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/optlibs.conf
+touch $DESTDIR/etc/ld.so.conf.d/0ptlibs.conf
+echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/0ptlibs.conf
 
 ninja -C pbp-build install
 
