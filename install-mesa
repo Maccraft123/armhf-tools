@@ -4,20 +4,23 @@ PKGROOT=$(pwd)
 
 set -v
 
-cd upstream || cd upstream-cross
+if [ -z "$TRIPLET" ]; then
+	cd upstream
+else
+	cd upstream-cross
+fi
 cd mesa\_master
 
 
 if grep LIBGL_DRIVERS_PATH $DESTDIR/etc/profile >/dev/null; then
 	echo "Not reconfiguring driver path"
 else
-	echo "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri'" >> $DESTDIR/etc/profile
+	echo "export LIBGL_DRIVERS_PATH='/opt/lib/$TRIPLET/dri/:/usr/lib/$TRIPLET/dri:\$LIBGL_DRIVERS_PATH'" >> $DESTDIR/etc/profile
 	echo "export LD_LIBRARY_PATH=/opt/lib/$TRIPLET/:\$LD_LIBRARY_PATH" >> $DESTDIR/etc/profile
-	echo "export PAN_MESA_DEBUG=bifrost" >> $DESTDIR/etc/profile
 fi
 
-touch $DESTDIR/etc/ld.so.conf.d/0ptlibs.conf
-echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/0ptlibs.conf
+touch $DESTDIR/etc/ld.so.conf.d/0ptlibs$TRIPLET.conf
+echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/0ptlibs$TRIPLET.conf
 
 ninja -C pbp-build install
 
