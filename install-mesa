@@ -21,6 +21,4 @@ echo "/opt/lib/$TRIPLET" > $DESTDIR/etc/ld.so.conf.d/0ptlibs.conf
 
 ninja -C pbp-build install
 
-rm -rf pbp-build
-
 ldconfig
