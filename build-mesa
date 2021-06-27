@@ -25,7 +25,7 @@ fi
 GITREPO=https://gitlab.freedesktop.org/mesa
 GITTREE=mesa
 
-GITBRANCH=master
+GITBRANCH=main
 PKGDIR=$GITTREE\_$GITBRANCH
 
 ## PREP
